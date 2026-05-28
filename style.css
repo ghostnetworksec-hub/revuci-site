@@ -1,0 +1,787 @@
+/* ========================================
+   REVUCI — Fashion Brand Website
+   Design System & Full Stylesheet
+   ======================================== */
+
+/* --- CSS Custom Properties --- */
+:root {
+  /* Brand palette — derived from imagery tones */
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-ivory: #f8f6f3;
+  --color-warm-gray: #b5a99a;
+  --color-dark-brown: #3d2f27;
+  --color-gold: #c4a265;
+  --color-text-muted: #8a8076;
+  --color-text-dark: #1a1a1a;
+  --color-text-light: rgba(255, 255, 255, 0.7);
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --section-pad-y: clamp(5rem, 10vw, 8rem);
+  --section-pad-x: clamp(1.5rem, 5vw, 6rem);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  /* Disallow dragging images to desktop */
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================
+   NAVBAR — Transparent, fixed
+   ========================================== */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem var(--section-pad-x);
+  background: transparent;
+  transition: background 0.5s var(--ease-smooth),
+              padding 0.4s var(--ease-smooth),
+              backdrop-filter 0.5s var(--ease-smooth);
+}
+
+#navbar.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav__logo {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.85rem;
+  letter-spacing: 0.4em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.nav__logo:hover {
+  opacity: 0.7;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav__link {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-white);
+  transition: width 0.35s var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--color-white);
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================
+   HERO SECTION — Full viewport image
+   ========================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  /* CSS background prevents browser right-click → "Save Image As" */
+  background-image: url('./blackpanth.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Block drag-to-desktop */
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Subtle scroll indicator */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleY(0.7); }
+  50% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+}
+
+/* ==========================================
+   ABOUT SECTION — White, asymmetric layout
+   ========================================== */
+.about {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+  background: var(--color-white);
+  color: var(--color-text-dark);
+  overflow: hidden;
+}
+
+.about__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-pad-y) var(--section-pad-x);
+  padding-right: clamp(2rem, 6vw, 5rem);
+  max-width: 55%;
+}
+
+.about__label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-warm-gray);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s var(--ease-out);
+}
+
+.about__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-text-dark);
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--ease-out) 0.1s;
+}
+
+.about__text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  max-width: 480px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.8s var(--ease-out) 0.2s;
+}
+
+.about__cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-dark-brown);
+  padding-bottom: 0.35rem;
+  border-bottom: 1.5px solid var(--color-dark-brown);
+  transition: color 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s var(--ease-out) 0.35s;
+}
+
+.about__cta:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  letter-spacing: 0.22em;
+}
+
+.about__image-wrapper {
+  flex: 0 0 45%;
+  position: relative;
+  overflow: hidden;
+}
+
+.about__image {
+  width: 100%;
+  height: 100%;
+  /* CSS background prevents browser right-click → "Save Image As" */
+  background-image: url('./456.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transition: transform 6s var(--ease-smooth);
+  /* Block drag-to-desktop */
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.about__image-wrapper:hover .about__image {
+  transform: scale(1.04);
+}
+
+/* Animate in when visible */
+.about.visible .about__label,
+.about.visible .about__title,
+.about.visible .about__text,
+.about.visible .about__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   JOIN THE CLUB — Dark cinematic section
+   ========================================== */
+.club {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-white);
+  color: var(--color-text-dark);
+}
+
+.club__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-white);
+  transform: scale(1.05);
+  transition: transform 8s var(--ease-smooth);
+}
+
+.club:hover .club__bg {
+  transform: scale(1);
+}
+
+.club__overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.club__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem var(--section-pad-x);
+  max-width: 800px;
+  width: 100%;
+}
+
+.club__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s var(--ease-out);
+}
+
+.club__subtitle {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.9s var(--ease-out) 0.15s;
+}
+
+.club__form {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.9s var(--ease-out) 0.3s;
+}
+
+.club__form-group {
+  display: flex;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.club__form-group:focus-within {
+  border-color: rgba(196, 162, 101, 0.4);
+  box-shadow: 0 0 30px rgba(196, 162, 101, 0.06);
+}
+
+.club__input {
+  flex: 1;
+  padding: 1.1rem 1.35rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-dark);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.club__input::placeholder {
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+}
+
+.club__button {
+  padding: 1.1rem 2.2rem;
+  background: transparent;
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.club__button:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-text-dark);
+}
+
+.club__button:active {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.club__button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.club__disclaimer {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+/* Animate in when visible */
+.club.visible .club__title,
+.club.visible .club__subtitle,
+.club.visible .club__form {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   STAY CONNECTED — Socials section
+   ========================================== */
+.connect {
+  background: url('./987.png') center center / cover no-repeat;
+  color: var(--color-white);
+  padding: var(--section-pad-y) var(--section-pad-x);
+  position: relative;
+}
+
+.connect__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.connect__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.8s var(--ease-out);
+}
+
+.connect__subtitle {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s var(--ease-out) 0.1s;
+}
+
+.connect__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.8s var(--ease-out) 0.2s;
+}
+
+.connect__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 2.5rem 1.5rem;
+  background: rgba(128, 128, 128, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: transform 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out),
+              border-color 0.4s ease,
+              background-color 0.4s ease;
+}
+
+.connect__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(128, 128, 128, 0.18);
+}
+
+.connect__icon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-white);
+  transition: color 0.3s ease;
+}
+
+.connect__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.connect__card:hover .connect__icon {
+  color: var(--color-gold);
+}
+
+.connect__name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.connect__handle {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+}
+
+/* Animate in when visible */
+.connect.visible .connect__title,
+.connect.visible .connect__subtitle,
+.connect.visible .connect__grid {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   FOOTER — Huge REVUCI on the right
+   ========================================== */
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 4rem var(--section-pad-x);
+  padding-top: 5rem;
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+  position: relative;
+}
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer__info {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.footer__link {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer__right {
+  position: relative;
+  z-index: 1;
+}
+
+.footer__brand {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(5rem, 14vw, 12rem);
+  letter-spacing: 0.04em;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.04);
+  text-transform: uppercase;
+  user-select: none;
+  transition: color 0.6s var(--ease-smooth);
+}
+
+.footer:hover .footer__brand {
+  color: rgba(255, 255, 255, 0.07);
+}
+
+/* ==========================================
+   RESPONSIVE — Mobile breakpoints
+   ========================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .about {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .about__content {
+    max-width: 100%;
+    padding: var(--section-pad-y) var(--section-pad-x);
+    padding-bottom: 3rem;
+  }
+
+  .about__image-wrapper {
+    flex: none;
+    height: 60vh;
+  }
+
+  .connect__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__brand {
+    font-size: clamp(3rem, 12vw, 8rem);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  :root {
+    --section-pad-x: 1.5rem;
+  }
+
+  #navbar {
+    padding: 1.25rem var(--section-pad-x);
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .nav__logo {
+    font-size: 1.1rem;
+  }
+
+  .hero {
+    height: 75vh;
+  }
+
+  .about__content {
+    padding: 3.5rem var(--section-pad-x);
+  }
+
+  .about__image-wrapper {
+    height: 50vh;
+  }
+
+  .club {
+    min-height: 90vh;
+  }
+
+  .club__form-group {
+    flex-direction: column;
+    border: none;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .club__input {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+    background: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .club__button {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    padding: 1.1rem;
+    background: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .connect__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .connect__card {
+    padding: 1.75rem 1rem;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 3rem var(--section-pad-x);
+  }
+
+  .footer__brand {
+    font-size: clamp(3.5rem, 18vw, 6rem);
+  }
+}
+
+/* ==========================================
+   UTILITY — Scroll-driven reveal animations
+   ========================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

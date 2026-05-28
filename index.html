@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Security: prevent clickjacking via meta (belt+suspenders with Vercel header) -->
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="description"
+    content="Timeless contemporary fashion with refined essentials, elevated silhouettes, and minimalist aesthetics.">
+  <title>REVUCI — Crafted With Intention</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================ -->
+  <!-- NAVBAR — Transparent, fixed -->
+  <!-- ============================================ -->
+  <nav id="navbar" aria-label="Main navigation">
+    <a href="/" id="logo" class="nav__logo" aria-label="REVUCI Home">REVUCI</a>
+  </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO SECTION — Full viewport, finalboth.jpg -->
+  <!-- ============================================ -->
+  <section id="hero" class="hero" aria-label="Hero banner">
+    <!-- Image rendered via CSS background to prevent easy right-click save -->
+    <div class="hero__image" role="img" aria-label="REVUCI campaign — Two models wearing REVUCI pieces in warm tones"></div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ABOUT SECTION — White bg, text left, image right -->
+  <!-- ============================================ -->
+  <section id="about" class="about" aria-label="About Revuci">
+    <div class="about__content">
+      <p class="about__label">The Brand</p>
+      <h2 class="about__title">About Revuci</h2>
+      <p class="about__text">
+        Revuci is more than fashion — it's a philosophy. Born from the desire to create pieces that speak without
+        shouting, every collection is a quiet rebellion against the ordinary. We believe in timeless silhouettes,
+        purposeful design, and the art of restraint.
+      </p>
+      <p class="about__text">
+        Each garment is crafted with intention, merging heritage craftsmanship with a modern sensibility. Revuci is
+        for those who understand that true style is never loud — it's felt.
+      </p>
+      <a href="#club" class="about__cta">Join the club →</a>
+    </div>
+    <div class="about__image-wrapper">
+      <!-- Image rendered via CSS background to prevent easy right-click save -->
+      <div class="about__image" role="img" aria-label="REVUCI lookbook — Model in rich brown tones"></div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- JOIN THE CLUB — 987.png background -->
+  <!-- ============================================ -->
+  <section id="club" class="club" aria-label="Join the club newsletter signup">
+    <div class="club__bg" role="img" aria-label="Dark silk fabric with gold jewelry"></div>
+    <div class="club__overlay"></div>
+
+    <div class="club__content">
+      <h2 class="club__title" id="club-heading">JOIN THE CLUB</h2>
+      <p class="club__subtitle">Private access to collections, campaigns, and the world of Revuci.</p>
+
+      <form id="newsletter-form" class="club__form" aria-label="Newsletter signup form">
+        <div class="club__form-group">
+          <input type="email" id="email-input" class="club__input" placeholder="Enter your email" required
+            autocomplete="email" aria-label="Email address">
+          <button type="submit" id="join-button" class="club__button">JOIN</button>
+        </div>
+        <p class="club__disclaimer">No spam — only when it matters.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- STAY CONNECTED — Socials section -->
+  <!-- ============================================ -->
+  <section id="connect" class="connect" aria-label="Stay connected via social media">
+    <div class="connect__inner">
+      <h2 class="connect__title">Stay Connected</h2>
+      <p class="connect__subtitle">Follow the journey. Be part of the story.</p>
+
+      <div class="connect__grid">
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/wear.revuci" target="_blank" rel="noopener noreferrer" class="connect__card"
+          id="social-instagram">
+          <div class="connect__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <span class="connect__name">Instagram</span>
+          <span class="connect__handle">@wear.revuci</span>
+        </a>
+
+        <!-- X / Twitter -->
+        <a href="https://x.com/wearrevuci" target="_blank" rel="noopener noreferrer" class="connect__card"
+          id="social-twitter">
+          <div class="connect__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </div>
+          <span class="connect__name">X (Twitter)</span>
+          <span class="connect__handle">@wearrevuci</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61590445319218&sk=directory_intro" target="_blank"
+          rel="noopener noreferrer" class="connect__card" id="social-facebook">
+          <div class="connect__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </div>
+          <span class="connect__name">Facebook</span>
+          <span class="connect__handle">@wear.revuci</span>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:contact@revuci.com" class="connect__card" id="social-email">
+          <div class="connect__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <span class="connect__name">Email</span>
+          <span class="connect__handle">contact@revuci.com</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER — Huge REVUCI on the right -->
+  <!-- ============================================ -->
+  <footer id="footer" class="footer" aria-label="Site footer">
+    <div class="footer__left">
+      <p class="footer__info">© 2026 REVUCI</p>
+      <p class="footer__info">All rights reserved.</p>
+      <div class="footer__links">
+        <a href="#" class="footer__link">Privacy</a>
+        <a href="#" class="footer__link">Terms</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+    </div>
+    <div class="footer__right">
+      <span class="footer__brand">REVUCI</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
